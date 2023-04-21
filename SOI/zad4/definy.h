@@ -1,0 +1,9 @@
+#define A 1
+#define B 2
+#define CAPACITY 10
+#define DEVICES 2
+#define NOT_USE 0
+#define COMMON 1
+#define PRT 2
+#define COMMON_PREMIUM 3
+#define PRT_PREMIUM 4
