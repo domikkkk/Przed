@@ -1,0 +1,19 @@
+{
+  "name": "crt-model",
+  "version": "1.0.0",
+  "description": "CRT model for FO",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/krisboorger/crt-model"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "p5": "^1.6.0"
+  },
+  "author": "",
+  "license": "ISC"
+}

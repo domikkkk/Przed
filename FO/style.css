@@ -1,0 +1,33 @@
+.parameters {
+    position: relative;
+    left: 10px;
+}
+.sliders {
+    position: relative;
+    left: 20%;
+    top: -60px;
+}
+.js {
+    position: relative;
+    left: 7%;
+    top: -40px;
+}
+
+.button-group {
+  position: relative;
+  display: flex;
+}
+.button-group button {
+  position: relative;
+  margin-right: 10px;
+}
+.output {
+  position: relative;
+  margin-top: 20px;
+  font-weight: bold;
+}
+
+h1 {
+    position: relative;
+    left: 10px;
+}

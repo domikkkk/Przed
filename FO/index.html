@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/p5.js"></script>
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+  <h1>Model CRT</h1>
+  <div id="parameters" class="parameters">
+    <h2> Parametry</h2>
+    <label for="width-input">Szerokość (px):</label>
+    <input type="number" id="width-input" min="0">
+    <br>
+    <label for="height-input">Wysokość (px):</label>
+    <input type="number" id="height-input" min="0">
+    <br>
+    <button id="update_Canvas">Zaktualizuj obraz</button>
+  </div>
+  <div id="slider" class="sliders">
+    <input type="range" min="0" max="2e-9" step="1e-11" value="0" id="Eslider">
+    <label> E=</label>
+    <span id="E_value">0</span>
+
+  <div class="button-group">
+    <button onclick="decrementValue('E')">&lt;</button>
+    <button onclick="resetValue('E')">reset</button>
+    <button onclick="incrementValue('E')">&gt;</button>
+  </div>
+
+    <br>
+    <input type="range" min="-1e-10" max="1e-10" step="1e-12" value="0" id="Bslider">
+    <label> B=</label>
+    <span id="B_value">0</span>
+
+  <div class="button-group">
+    <button onclick="decrementValue('B')">&lt;</button>
+    <button onclick="resetValue('B')">reset</button>
+    <button onclick="incrementValue('B')">&gt;</button>
+  </div>
+  </div>
+  <div id="js" class="js">
+    <h2>Animacja</h2>
+    <script src="CRT.js"></script>
+    <script src="page_logic.js"></script>
+  </div>
+</body>
+</html>
