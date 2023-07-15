@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Add</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+</head>
+
+<body>
+<div style="margin: 20px;">
+  <p class="fs-2" style="margin: inherit;">Dodawanie grup</p>
+  <form id="addActivity" th:action="@{../add/{path}(path = ${activity})}" method="post" name="addGroup">
+    <div style="margin: 10px;">
+      <div class="my-3 me-5">
+        <input type="text" class="form-control" name="groupSize" placeholder="Rozmiar grupy">
+      </div>
+      <div class="my-3 me-5">
+        <input type="text" class="form-control" name="name" size="30" placeholder="Nazwa grupy">
+      </div>
+      <div class="my-3 me-5">
+        <label for="weekday" class="lead">Dzień tygodnia</label>
+        <select id="weekday" type="text" class="form-control" name="weekday" required>
+          <option value="Poniedziałek">Poniedziałek</option>
+          <option value="Wtorek">Wtorek</option>
+          <option value="Środa">Środa</option>
+          <option value="Czwartek">Czwartek</option>
+          <option value="Piątek">Piątek</option>
+          <option value="Sobota">Sobota</option>
+          <option value="Niedziela">Niedziela</option>
+        </select>
+      </div>
+      <div class="my-3 me-5">
+        <input type="text" class="form-control" name="hour" size="30" required placeholder="Godzina">
+      </div>
+      <div class="my-3 me-5">
+        <select class="form-control" multiple name="students" size="3">
+          <option th:each="student : ${students}" th:value="${student.indeks}"
+                  th:text="${student.firstname + ' ' + student.lastname}"></option>
+        </select>
+
+      </div>
+    </div>
+    <div style="margin: 10px;">
+      <button type="submit" class="btn btn-primary">Stwórz grupę</button>
+    </div>
+  </form>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

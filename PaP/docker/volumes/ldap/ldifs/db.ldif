@@ -1,0 +1,94 @@
+dn: dc=example,dc=com
+objectclass: top
+objectclass: domain
+objectclass: extensibleObject
+dc: example
+
+dn: ou=groups,dc=example,dc=com
+objectclass: top
+objectclass: organizationalUnit
+ou: groups
+
+dn: ou=users,dc=example,dc=com
+objectclass: top
+objectclass: organizationalUnit
+ou: users
+
+dn: uid=dsidorcz,ou=users,dc=example,dc=com
+objectclass: top
+objectclass: person
+objectclass: organizationalPerson
+objectclass: inetOrgPerson
+cn: Dominik Sidorczuk
+sn: Sidorczuk
+uid: dsidorcz
+userPassword: $2b$12$7oXGgPcRNzZzvgpK1NBFEOdKl3CYT8Vl1MLAhQeRW2VzLKVhUU0Se
+
+dn: uid=ftsupin,ou=users,dc=example,dc=com
+objectclass: top
+objectclass: person
+objectclass: organizationalPerson
+objectclass: inetOrgPerson
+cn: Fedir Tsupin
+sn: Tsupin
+uid: ftsupin
+userPassword: $2b$12$7oXGgPcRNzZzvgpK1NBFEOdKl3CYT8Vl1MLAhQeRW2VzLKVhUU0Se
+
+dn: uid=kstawars,ou=users,dc=example,dc=com
+objectclass: top
+objectclass: person
+objectclass: organizationalPerson
+objectclass: inetOrgPerson
+cn: Krzysztof Stawarski
+sn: Stawarski
+uid: kstawars
+userPassword: $2b$12$7oXGgPcRNzZzvgpK1NBFEOdKl3CYT8Vl1MLAhQeRW2VzLKVhUU0Se
+
+dn: uid=tsroka,ou=users,dc=example,dc=com
+objectclass: top
+objectclass: person
+objectclass: organizationalPerson
+objectclass: inetOrgPerson
+cn: Tomasz Sroka
+sn: Sroka
+uid: tsroka
+userPassword: $2b$12$7oXGgPcRNzZzvgpK1NBFEOdKl3CYT8Vl1MLAhQeRW2VzLKVhUU0Se
+
+dn: uid=jmyrcha,ou=users,dc=example,dc=com
+objectclass: top
+objectclass: person
+objectclass: organizationalPerson
+objectclass: inetOrgPerson
+cn: Julian Myrcha
+sn: Myrcha
+uid: jmyrcha
+userPassword: $2b$12$7oXGgPcRNzZzvgpK1NBFEOdKl3CYT8Vl1MLAhQeRW2VzLKVhUU0Se
+
+dn: uid=kzbikows,ou=users,dc=example,dc=com
+objectclass: top
+objectclass: person
+objectclass: organizationalPerson
+objectclass: inetOrgPerson
+cn: Kamil Żbikowski
+sn: Żbikowski
+uid: kzbikows
+userPassword: $2b$12$7oXGgPcRNzZzvgpK1NBFEOdKl3CYT8Vl1MLAhQeRW2VzLKVhUU0Se
+
+
+dn: cn=students,ou=groups,dc=example,dc=com
+objectclass: top
+objectclass: groupOfUniqueNames
+cn: students
+ou: student
+uniqueMember: uid=dsidorcz,ou=users,dc=example,dc=com
+uniqueMember: uid=ftsupin,ou=users,dc=example,dc=com
+uniqueMember: uid=kstawars,ou=users,dc=example,dc=com
+uniqueMember: uid=tsroka,ou=users,dc=example,dc=com
+
+dn: cn=teachers,ou=groups,dc=example,dc=com
+objectclass: top
+objectclass: groupOfUniqueNames
+cn: teachers
+ou: teacher
+uniqueMember: uid=jmyrcha,ou=users,dc=example,dc=com
+uniqueMember: uid=kzbikows,ou=users,dc=example,dc=com

@@ -1,0 +1,67 @@
+stages:
+  - build
+  - dockerize
+  - test
+  - deploy
+
+build-job:
+  stage: build
+  image:
+    name: amazoncorretto:19.0.1
+  artifacts:
+    untracked: true
+  script:
+    - echo 'nameserver 1.1.1.1' > /etc/resolv.conf
+    - echo "Compiling the code..."
+    - chmod +x mvnw
+    - ./mvnw install -DskipTests=true
+    - echo "Successfully compiled the code."
+
+dockerize-main-app:
+  stage: dockerize
+  needs: ["build-job"]
+  dependencies:
+    - build-job
+  image:
+    name: docker:dind
+  artifacts:
+    untracked: true
+  script:
+    - echo "Packaging into docker..."
+    - docker build -t $DOCKER_USER/usus .
+    - echo "Successfully dockerized the app."
+
+tests:
+  stage: test
+  needs: ["dockerize-main-app", "build-job"]
+  dependencies:
+    - dockerize-main-app
+    - build-job
+  image:
+    name: docker:dind
+  script:
+    - docker compose up -d
+    - echo https://dl-cdn.alpinelinux.org/alpine/edge/testing/ >> /etc/apk/repositories
+    - apk add openjdk19-jdk
+    - export JAVA_HOME="/usr/lib/jvm/java-19-openjdk"
+    - export PATH="${JAVA_HOME}/bin:${PATH}"
+    - ./mvnw test
+
+.deploy-common:
+  stage: deploy
+  needs: ["dockerize-main-app", "tests"]
+  dependencies:
+    - dockerize-main-app
+    - tests
+  image:
+    name: docker:dind
+  script:
+    - echo 'nameserver 1.1.1.1' > /etc/resolv.conf
+    - docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+    - docker push $DOCKER_USER/usus
+
+deploy-master-push:
+  extends: .deploy-common
+  only:
+    refs:
+      - master

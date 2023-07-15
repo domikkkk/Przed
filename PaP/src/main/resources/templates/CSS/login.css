@@ -1,0 +1,44 @@
+html,
+body {
+    height: 100%;
+    margin: 0;
+    background-color: #b7b7e6;
+}
+
+.inner * {
+    margin-left: 15px;
+}
+
+input {
+    margin: 30px;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.outer {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.inner {
+    padding: 15px 30px 30px 30px;
+    background-color: #9595d6;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#submitButton {
+    width: 30%;
+}
+
+.errorMessage {
+    display: none;
+    margin-right: 15px;
+    word-break: break-word;
+    max-width: fit-content;
+    background-color: rgb(248, 162, 162);
+    border-radius: 5px;
+    padding: 5px;
+}

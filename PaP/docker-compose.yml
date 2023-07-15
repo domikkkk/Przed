@@ -1,0 +1,39 @@
+version: "3"
+
+services:
+  usus:
+    container_name: usus
+    image: krisboorger/usus
+    ports:
+      - "8080:5050"
+    networks:
+      - my-network
+    restart: unless-stopped
+    depends_on:
+      - openldap
+
+  openldap:
+    image: bitnami/openldap:2
+    container_name: openldap
+    ports:
+      - '1389:1389'
+      - '1636:1636'
+    networks:
+      - my-network
+    environment:
+      - LDAP_ROOT=dc=example,dc=com
+      - LDAP_ADMIN_USERNAME=admin
+      - LDAP_ADMIN_PASSWORD=adminpassword
+      - LDAP_CUSTOM_LDIF_DIR=/ldifs
+    volumes:
+      - 'openldap_data:/bitnami/openldap'
+      - './docker/volumes/ldap/ldifs:/ldifs'
+
+volumes:
+  openldap_data:
+    name: openldap_data
+    driver: local
+
+networks:
+  my-network:
+    driver: bridge

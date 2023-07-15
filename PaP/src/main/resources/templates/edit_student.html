@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf8">
+  <title>Edycja studenta</title>
+  <link rel="stylesheet"
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+</head>
+<body>
+<div class = "container">
+  <div class = "row">
+    <div class ="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
+      <h1 class = "text-center"> Zmiana danych studenta </h1>
+      <div class = "card-body">
+        <form th:action="@{../update/{id} (id=${student.indeks})}" th:object = "${student}" method="POST">
+          <div class ="form-group">
+            <label> Imię </label>
+            <input
+                    type = "text"
+                    name = "firstName"
+                    th:field = "*{firstname}"
+                    class = "form-control"
+                    placeholder="Wpiz imię"/>
+          </div>
+
+          <div class ="form-group">
+            <label> Nazwisko </label>
+            <input
+                    type = "text"
+                    name = "lastName"
+                    th:field = "*{lastname}"
+                    class = "form-control"
+                    placeholder="Wpisz nazwisko"
+            />
+
+            <label> Student LDAP login</label>
+            <input
+                    type = "text"
+                    name = "username"
+                    th:field = "*{username}"
+                    class = "form-control"
+                    placeholder="Wpisz login LDAP"
+            />
+
+          </div>
+
+          <div class ="form-group">
+            <label> Data urodzin </label>
+            <input
+                    type = "text"
+                    name = "birthdate"
+                    th:field = "*{birthdate}"
+                    class = "form-control"
+                    placeholder="Wpisz datę urodzenia w formacie dd.MM.yyyy"
+            />
+          </div>
+
+          <div class ="form-group">
+            <label for="studentGroups"> Student groups </label>
+            <br>
+            <select class="form-select" multiple name="studentGroups" id="studentGroups" size="3">
+              <option th:each="group : ${groups}" th:value="${group.id}"
+                      th:text="${group.name + ' Termin: ' + group.weekday+', godz.'+group.hour}"></option>
+            </select>
+          </div>
+
+          <!--<div class ="form-group">
+            <label> Student exchange periods </label>
+            <div class="table-wrapper-scroll-y my-custom-scrollbar">
+              <div th:each="period: ${student.exchangePeriods}" th:text="${period.info + ' Student lastname: ' + period.student.lastname
+         + ' Offered period: ' + period.offeredPeriod.description}">
+                <div class="table-wrapper-scroll-y my-custom-scrollbar">
+                  <div th:each="desiredPeriod : ${period.desiredPeriods}"
+                       th:text="${' ' + desiredPeriod.description + ' Start: ' + desiredPeriod.start + ' End: ' + desiredPeriod.end}">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>-->
+
+          <!--<div class ="form-group">
+            <label> Student periods </label>
+            <select class="form-control" multiple name="desiredPeriods" size="3">
+              <option th:each="period : ${periods}" th:value="${period.id}"
+                      th:text="${period.description + ' Start: ' + period.start + ' End: ' + period.end}"></option>
+            </select>
+          </div>-->
+
+          <div class = "box-footer">
+            <button type="submit" class = "btn btn-primary">
+              Submit
+            </button>
+          </div>
+        </form>
+
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
