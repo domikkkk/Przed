@@ -1,0 +1,16 @@
+/cmake-build-debug/*
+CMakeCache.txt
+_deps/
+Makefile
+CMakeFiles/
+cmake_install.cmake
+*.out
+/.vs
+/out/build/x64-debug/.cmake/api/v1
+/out/build/x64-debug/src/Scorched
+/out/build/x64-debug
+/CMakeSettings.json
+/out/build/x64-Release
+*.a
+_cmrc/
+__cmrc_Resources/
