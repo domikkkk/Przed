@@ -1,0 +1,5 @@
+1. questy do zrobienia
+2. losowość stowrków
+3. losowosc pojawienia sie 10 lvl
+4. dodawanie Exeter
+5. pousuwać IO
