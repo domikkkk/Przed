@@ -1,0 +1,81 @@
+version: "3"
+services:
+  frontend:
+    container_name: nginx-react-app
+    image: nginx:latest
+    networks: [sklep_network]
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./ngnix:/etc/nginx/conf.d
+      - ./frontend/build:/app/static
+    depends_on:
+      - sklep
+
+
+  cassandra:
+    container_name: cassandra-container
+    image: cassandra:latest
+    networks: [sklep_network]
+    ports:
+      - "9042:9042"
+  sklep:
+    container_name: pis-sklep
+    build:
+      context: .
+      dockerfile: backend/sklep/Dockerfile
+    
+    ports:
+       - "1234:1234" #api, z ktorym rozmawia frontend
+    image: pis-sklep:latest
+    networks: [sklep_network]
+    restart: unless-stopped
+    depends_on: [cassandra]
+
+  project-db:
+    container_name: mySql
+    image: mysql
+    restart: always
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_USER: database
+      MYSQL_PASSWORD: database
+    networks: [sklep_network]
+
+  project-keycloak:
+    container_name: project-keycloak
+    image: quay.io/keycloak/keycloak:23.0.3
+    restart: always
+    ports:
+      - 8180:8080
+    environment:
+      PROXY_ADDRESS_FORWARDING: "true"
+      DB_VENDOR: mysql
+      DB_ADDR: mySql
+      DB_PORT: 3306
+      DB_DATABASE: project_keycloak
+      DB_USER: database
+      DB_PASSWORD: database
+      KEYCLOAK_USER: user
+      KEYCLOAK_PASSWORD: user
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: admin
+      QUARKUS_DATASOURCE_REACTIVE_URL: jdbc:mysql://mySql:3306/project_keycloak
+      QUARKUS_DATASOURCE_REACTIVE_USERNAME: database
+      QUARKUS_DATASOURCE_REACTIVE_PASSWORD: database
+      QUARKUS_TRANSACTION_MANAGER_ENABLE_RECOVERY: "true"
+    depends_on: [project-db]
+    volumes:
+      - keycloak_data:/opt/jboss/keycloak/standalone/data
+    networks: [sklep_network]
+    command:
+      - start-dev
+
+volumes:
+  keycloak_data:
+
+networks:
+  sklep_network:
+    name: sklep_network

@@ -1,0 +1,9 @@
+{
+  "realm": "sklep",
+  "auth-server-url": "http://localhost:8180/",
+  "ssl-required": "external",
+  "resource": "reactApp",
+  "public-client": true,
+  "confidential-port": 0,
+  "token-store": "cookie"
+}
