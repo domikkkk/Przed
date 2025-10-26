@@ -1,0 +1,8 @@
+lpips==0.1.4
+matplotlib==3.10.1
+numpy==2.2.3
+opencv_python==4.10.0.84
+torch==2.5.0+cu118
+torchvision==0.20.0+cu118
+tqdm==4.66.5
+brisque==0.0.16
